@@ -1,5 +1,8 @@
 # Parameter Editor
 
+
+[![Просмотры README](https://vbr.nathanchung.dev/badge?page_id=Richbanker.Parameter-Editor&text=README_Views)](https://github.com/Richbanker/Parameter-Editor)
+
 Редактор параметров с возможностью drag-and-drop сортировки, историей изменений и уведомлениями.
 
 ## Технологический стек
