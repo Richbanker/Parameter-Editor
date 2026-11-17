@@ -201,12 +201,10 @@ const useParamsStore = create<EditorStore>((set, get) => ({
           }
           break;
         case 'create':
-          if (historyEntry.changes) {
-            const changes = historyEntry.changes;
-            if (changes.before?.id) {
-              updatedModel.parameters = [...updatedModel.parameters, changes.before];
-              updatedModel.updatedAt = Date.now();
-            }
+          if (historyEntry.changes?.after?.id) {
+            const createdParamId = historyEntry.changes.after.id;
+            updatedModel.parameters = updatedModel.parameters.filter(p => p.id !== createdParamId);
+            updatedModel.updatedAt = Date.now();
           }
           break;
         case 'delete':
