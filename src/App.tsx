@@ -7,7 +7,9 @@ import { Notifications } from './components/ui/Notifications';
 import { HistoryPanel } from './components/history/HistoryPanel';
 
 const App: React.FC = () => {
-  const { models, selectedModel, setSelectedModel, updateParameter, deleteParameter, notifications, removeNotification, history, currentHistoryIndex, undo, redo, reorderParameters } = useParamsStore();
+  const { models, selectedModel: selectedSnapshot, setSelectedModel, updateParameter, deleteParameter, notifications, removeNotification, history, currentHistoryIndex, undo, redo, reorderParameters } = useParamsStore();
+
+  const selectedModel = models.find(model => model.id === selectedSnapshot?.id) ?? null;
 
   return (
     <div className="min-h-screen text-gray-900 flex flex-col items-center py-8">
