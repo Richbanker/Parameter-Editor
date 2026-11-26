@@ -57,8 +57,10 @@ export const SortableParamItem: React.FC<SortableParamItemProps> = ({
           )}
           <div className="param-item-value">
             <input
-              type={param.type === 'number' ? 'number' : param.type === 'color' ? 'color' : 'text'}
-              value={param.value}
+              type={param.type === 'boolean' ? 'checkbox' : param.type === 'number' ? 'number' : param.type === 'color' ? 'color' : 'text'}
+              aria-label={param.name}
+              checked={param.type === 'boolean' ? Boolean(param.value) : undefined}
+              value={param.type === 'boolean' ? undefined : param.value}
               onChange={(e) => {
                 let newValue: any = e.target.value;
                 
