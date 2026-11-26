@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   DndContext,
+  type DragEndEvent,
   closestCenter,
   KeyboardSensor,
   PointerSensor,
@@ -36,13 +37,14 @@ export const SortableParamList: React.FC<SortableParamListProps> = ({
     })
   );
 
-  const handleDragEnd = (event: any) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
-    if (active.id !== over.id) {
+    if (over && active.id !== over.id) {
       const oldIndex = parameters.findIndex((p) => p.id === active.id);
       const newIndex = parameters.findIndex((p) => p.id === over.id);
 
+      if (oldIndex < 0 || newIndex < 0) return;
       onReorder(arrayMove(parameters, oldIndex, newIndex));
     }
   };
