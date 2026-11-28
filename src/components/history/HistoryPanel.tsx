@@ -15,7 +15,6 @@ export const HistoryPanel: React.FC<HistoryPanelProps> = ({
   currentIndex,
   onUndo,
   onRedo,
-  onSelectVersion,
 }) => {
   return (
     <div className="history-panel space-y-4">
@@ -39,8 +38,8 @@ export const HistoryPanel: React.FC<HistoryPanelProps> = ({
         {history.map((entry, index) => (
           <div
             key={entry.id}
-            className={`history-item p-3 border rounded cursor-pointer transition-colors ${index === currentIndex ? 'bg-blue-100 border-blue-500' : 'bg-white hover:bg-gray-50'}`}
-            onClick={() => onSelectVersion(index)}
+            className={`history-item p-3 border rounded ${index === currentIndex ? 'bg-blue-100 border-blue-500' : 'bg-white'}`}
+            aria-current={index === currentIndex ? "true" : undefined}
           >
             <div className="history-item-header flex justify-between text-sm text-gray-600 mb-1">
               <span className="history-item-type font-semibold">{entry.type}</span>
