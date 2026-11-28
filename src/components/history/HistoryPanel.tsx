@@ -39,8 +39,17 @@ export const HistoryPanel: React.FC<HistoryPanelProps> = ({
         {history.map((entry, index) => (
           <div
             key={entry.id}
-            className={`history-item p-3 border rounded cursor-pointer transition-colors ${index === currentIndex ? 'bg-blue-100 border-blue-500' : 'bg-white hover:bg-gray-50'}`}
+            className={`history-item p-3 border rounded cursor-pointer transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-500 ${index === currentIndex ? 'bg-blue-100 border-blue-500' : 'bg-white hover:bg-gray-50'}`}
+            role="button"
+            tabIndex={0}
+            aria-pressed={index === currentIndex}
             onClick={() => onSelectVersion(index)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                onSelectVersion(index);
+              }
+            }}
           >
             <div className="history-item-header flex justify-between text-sm text-gray-600 mb-1">
               <span className="history-item-type font-semibold">{entry.type}</span>
